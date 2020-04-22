@@ -1,0 +1,5 @@
+Flask
+pytesseract
+numpy
+opencv-python
+scipy
