@@ -72,7 +72,7 @@ pipelines:
             - docker
           script:
             - export BITBUCKET_COMMIT_SHORT="${BITBUCKET_COMMIT::7}"
-            - export IMAGE_NAME=jichu20/$PROJECT_NAME-$BITBUCKET_COMMIT_SHORT
+            - export IMAGE_NAME=jichu20/$PROJECT_NAME:$BITBUCKET_COMMIT_SHORT
             - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
             - docker build --rm -f "dockerfile" -t $IMAGE_NAME "."
             - docker push $IMAGE_NAME
