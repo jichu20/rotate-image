@@ -1,9 +1,11 @@
 # Importing necessary libraries
-import cv2, io, os
+import cv2
+import io
+import os
 import numpy as np
 from flask_restful import Api, Resource
 from flask_api import status
-from flask import request, send_file
+from flask import Flask, request, send_file
 from core import utils, image
 
 app = Flask(__name__)
