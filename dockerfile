@@ -11,7 +11,7 @@ EXPOSE 8080 8080
 RUN ["/bin/bash", "apt-get", "update", \
     "apt-get","install","poppler-utils", "-y", \
     "apt-get", "clean" \
-    "apt-get", "autoremove"
+    "apt-get", "autoremove"]
 
 # Copiamos el proyecto al contenedor
 # RUN make /app
