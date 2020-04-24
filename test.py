@@ -1,3 +1,4 @@
+# flake8: noqa
 # Importing necessary libraries
 import numpy as np
 import cv2

@@ -3,7 +3,7 @@ import cv2, io, os
 import numpy as np
 from flask_restful import Api, Resource
 from flask_api import status
-from flask import Flask, render_template, request, send_file
+from flask import request, send_file
 from core import utils, image
 
 app = Flask(__name__)
