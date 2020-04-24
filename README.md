@@ -24,8 +24,15 @@ pip install -r requirements.txt
 
 ```
 
-# Referencias Externas
+## Test
 
+Para probar el servicio, se puede ejecutar el siguiente comando
+
+```sh
+curl --location --request POST 'http://0.0.0.0:8080/image/rotate' --form 'file=@/Users/borja.sanchez/Code/python/workspace/rotate-image/resources/IMG_3536.jpg' --output ./descarga.jpg
+```
+
+# Referencias Externas
 
 ## Docker
 
