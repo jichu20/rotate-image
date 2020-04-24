@@ -4,14 +4,11 @@ FROM python:3
 EXPOSE 8080 8080
 
 # Instalamos las dependencias de necesarias apra el ocr
-# RUN apt-get update \
-#     && apt-get install poppler-utils -y \
-#     && apt-get clean \
-#     && apt-get autoremove
-RUN ["/bin/bash", "apt-get", "update", \
-    "apt-get","install","poppler-utils", "-y", \
-    "apt-get", "clean" \
-    "apt-get", "autoremove"]
+RUN apt-get update \
+    && apt-get install poppler-utils -y \
+    && apt-get clean \
+    && apt-get autoremove
+
 
 # Copiamos el proyecto al contenedor
 # RUN make /app
