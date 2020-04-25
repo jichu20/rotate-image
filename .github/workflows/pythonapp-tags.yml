@@ -45,3 +45,5 @@ jobs:
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build the tagged Docker image
         run: docker build . --file Dockerfile --tag jichu20/rotate-image:${{steps.vars.outputs.tag}}
+      - name: Push the latest Docker image
+        run: docker push jichu20/rotate-image:${{steps.vars.outputs.tag}}
