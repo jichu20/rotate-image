@@ -11,11 +11,12 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
+      # Descargamos el código
     - uses: actions/checkout@v2
+
+    # Compilamos el proyecto
     - name: Set up Python 3.8
       uses: actions/setup-python@v1
       with:
@@ -27,11 +28,8 @@ jobs:
     - name: Lint with flake8
       run: |
         pip install flake8
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with pytest
-      run: |
-        pip install pytest
-        pytest
+        flake8 --max-line-length=120 --ignore=E402,W503,E722 .
+    
+    # Subimos la version 
+    - name: Build the tagged Docker image
+      run: docker build . --file Dockerfile --tag jichu20/rotate-image:latest
