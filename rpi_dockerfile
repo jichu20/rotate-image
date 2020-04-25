@@ -1,4 +1,5 @@
-FROM frankwolf/rpi-python3-gpio
+# FROM frankwolf/rpi-python3-gpio
+FROM azogue/py36_base:rpi3
 
 # Exponemos el puerto 8080
 EXPOSE 8080 8080
@@ -9,14 +10,12 @@ RUN apt-get update \
     && apt-get clean \
     && apt-get autoremove
     
-
 RUN pip install --upgrade pip
 
 # Copiamos el proyecto al contenedor
 COPY . /app
 
 # Instalamos las dependencias
-RUN pip install numpy scipy pandas matplotlib
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # Ejecutamos la app
