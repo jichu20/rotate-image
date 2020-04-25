@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: PipeLine to feature
+name: PipeLine to develop
 
 on:
   push:
@@ -27,11 +27,16 @@ jobs:
         pip install flake8
         flake8 --max-line-length=120 --ignore=E402,W503,E722 .
 
-    - uses: actions/checkout@v2
-    - name: Publish to Registry
-      uses: HurricanKai/Publish-Docker-Github-Action@v2
+    # - name: Publish to Registry
+    #   uses: HurricanKai/Publish-Docker-Github-Action@v2
+    #   with:
+    #     name: jichu20/rotate-image:latest
+    #     username: ${{ secrets.DOCKER_USERNAME }}
+    #     password: ${{ secrets.DOCKER_PASSWORD }}
+    #     dockerfile: dockerfile
+    - name: build docker image
+      id: build
+      uses: docker/build-action@v1
       with:
-        name: jichu20/rotate-image:latest
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        dockerfile: dockerfile
+        repository: jichu20/rotate-image
+        tags: latest
