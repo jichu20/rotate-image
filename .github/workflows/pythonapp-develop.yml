@@ -34,9 +34,22 @@ jobs:
     #     username: ${{ secrets.DOCKER_USERNAME }}
     #     password: ${{ secrets.DOCKER_PASSWORD }}
     #     dockerfile: dockerfile
-    - name: build docker image
-      id: build
-      uses: docker/build-action@v1
-      with:
-        repository: jichu20/rotate-image
-        tags: latest
+    # - name: build docker image
+    #   id: build
+    #   uses: docker/build-action@v1
+    #   with:
+    #     repository: jichu20/rotate-image
+    #     tags: latest
+
+
+
+    - name: Login to DockerHub Registry
+      run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+    - name: Get the version
+      id: vars
+      run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
+    - name: Build the tagged Docker image
+      run: docker build . --file dockerfile --tag jichu20/rotate-image:latest
+    - name: Push the tagged Docker image
+      run: docker pushjichu20/rotate-image:latest
+
