@@ -16,29 +16,29 @@ jobs:
       - uses: actions/checkout@v2
     
     # Recuperamos la versión seteada
-    # - name: Set output
-    #   id: vars
-    #   run: echo ::set-output name=tag::${GITHUB_REF:10}
-    # - name: Check output
-    #   env:
-    #     RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF:10}
+      - name: Check output
+        env:
+          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
 
-    # # Compilamos el proyecto
-    # - name: Set up Python 3.8
-    #   uses: actions/setup-python@v1
-    #   with:
-    #     python-version: 3.8
-    # - name: Install dependencies
-    #   run: |
-    #     python -m pip install --upgrade pip
-    #     pip install -r requirements.txt
-    # - name: Lint with flake8
-    #   run: |
-    #     pip install flake8
-    #     flake8 --max-line-length=120 --ignore=E402,W503,E722 .
+      # Compilamos el proyecto
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Lint with flake8
+        run: |
+          pip install flake8
+          flake8 --max-line-length=120 --ignore=E402,W503,E722 .
 
-    # # Subimos la version 
-    # - name: Login to DockerHub Registry
-    #   run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-    # - name: Build the tagged Docker image
-    #   run: docker build . --file Dockerfile --tag jichu20/rotate-image:$RELEASE_VERSION
+      # Subimos la version 
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build the tagged Docker image
+        run: docker build . --file Dockerfile --tag jichu20/rotate-image:$RELEASE_VERSION
