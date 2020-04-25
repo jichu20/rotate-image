@@ -51,5 +51,5 @@ jobs:
     - name: Build the tagged Docker image
       run: docker build . --file dockerfile --tag jichu20/rotate-image:latest
     - name: Push the tagged Docker image
-      run: docker pushjichu20/rotate-image:latest
+      run: docker push jichu20/rotate-image:latest
 
