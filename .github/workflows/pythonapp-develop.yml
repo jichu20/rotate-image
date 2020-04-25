@@ -5,7 +5,7 @@ name: PipeLine to develop
 
 on:
   push:
-    branches: [ 'feature/*' ]
+    branches: [ 'develop' ]
 
 jobs:
   build:
@@ -26,22 +26,6 @@ jobs:
       run: |
         pip install flake8
         flake8 --max-line-length=120 --ignore=E402,W503,E722 .
-
-    # - name: Publish to Registry
-    #   uses: HurricanKai/Publish-Docker-Github-Action@v2
-    #   with:
-    #     name: jichu20/rotate-image:latest
-    #     username: ${{ secrets.DOCKER_USERNAME }}
-    #     password: ${{ secrets.DOCKER_PASSWORD }}
-    #     dockerfile: dockerfile
-    # - name: build docker image
-    #   id: build
-    #   uses: docker/build-action@v1
-    #   with:
-    #     repository: jichu20/rotate-image
-    #     tags: latest
-
-
 
     - name: Login to DockerHub Registry
       run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
