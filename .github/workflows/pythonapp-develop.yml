@@ -26,7 +26,12 @@ jobs:
       run: |
         pip install flake8
         flake8 --max-line-length=120 --ignore=E402,W503,E722 .
-    # - name: Test with pytest
-    #   run: |
-    #     pip install pytest
-    #     pytest
+
+    - uses: actions/checkout@v2
+    - name: Publish to Registry
+      uses: HurricanKai/Publish-Docker-Github-Action@v2
+      with:
+        name: jichu20/rotate-image:latest
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        dockerfile: dockerfile
