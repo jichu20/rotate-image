@@ -7,16 +7,16 @@ EXPOSE 8080 8080
 RUN apt-get update \
     && apt-get install poppler-utils -y \
     && apt-get clean \
-    && apt-get autoremove 
+    && apt-get autoremove
+    
 
 RUN pip install --upgrade pip
 
 # Copiamos el proyecto al contenedor
-# RUN make /app
 COPY . /app
 
 # Instalamos las dependencias
-# RUN pip install -r /app/requirements.txt
+RUN pip install numpy scipy pandas matplotlib
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # Ejecutamos la app
