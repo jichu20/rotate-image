@@ -36,6 +36,8 @@ curl --location --request POST 'http://0.0.0.0:8080/v1/ns/borja/image/rotate' \
 
 # Referencias Externas
 
+Para el desarrollo del proyecto se ha seguido la [siguiente guia](https://medium.com/analytics-vidhya/ocr-on-region-of-interest-roi-in-image-using-opencv-and-tesseract-a7cab6ff18b3)
+
 ## Docker
 
 Para generar la imagen docker ejecutamos `docker build --rm -f "dockerfile" -t jichu20/rotate-image:latest "."`
