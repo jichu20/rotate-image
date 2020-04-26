@@ -32,4 +32,4 @@ jobs:
     
     # Subimos la version 
     - name: Build the tagged Docker image
-      run: docker build . --file Dockerfile --tag jichu20/rotate-image:latest
+      run: docker build . --file dockerfile --tag jichu20/rotate-image:latest
