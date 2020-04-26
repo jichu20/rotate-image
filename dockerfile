@@ -1,7 +1,7 @@
 FROM python:3
 
 # Exponemos el puerto 8080
-EXPOSE 8080 8080
+EXPOSE 8080
 
 # Instalamos las dependencias de necesarias apra el ocr
 RUN apt-get update \
