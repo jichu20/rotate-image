@@ -1,0 +1,43 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: PypeLine to tags
+
+on:
+  push:
+    tags: ['rpi_*.*.*']
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    # Descargamos el código
+      - uses: actions/checkout@v2
+    
+      # Compilamos el proyecto
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Lint with flake8
+        run: |
+          pip install flake8
+          flake8 --max-line-length=120 --ignore=E402,W503,E722 .
+      # Obtenemos la version   
+      - name: Get the version
+        id: vars
+        run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
+      # Subimos la version 
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      # Construimos la imagen
+      - name: Build the tagged Docker image
+        run: docker build . --file rpi_dockerfile --tag jichu20/rotate-image:${{steps.vars.outputs.tag}}
+      # Subimos la imagen
+      - name: Push the latest Docker image
+        run: docker push jichu20/rotate-image:${{steps.vars.outputs.tag}}
