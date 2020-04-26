@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Importing necessary libraries
 import cv2
 import io
@@ -27,7 +28,11 @@ class Image(Resource):
 
         if file and not utils.allowed_file(file.filename):
             return (
-                {"_error": f"Selected file is not valid, only {utils.ALLOWED_EXTENSIONS} is allowed"},
+                # {"_error": f"Selected file is not valid, only {utils.ALLOWED_EXTENSIONS} is allowed"},
+                {
+                    "_error": "Selected file is not valid, only %s is allowed"
+                    % {utils.listToString(utils.ALLOWED_EXTENSIONS)}
+                },
                 status.HTTP_400_BAD_REQUEST,
             )
 
