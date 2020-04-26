@@ -16,7 +16,7 @@ api = Api(app)
 metrics = PrometheusMetrics(app)
 
 # Métrica con información estatica, nos vale como healtcheck
-metrics.info("service", "Name and version of service", version="0.1.0", service="rotate-image")
+metrics.info("service", "Name and version of service", version="0.2.0", service="rotate-image")
 
 
 class Image(Resource):
