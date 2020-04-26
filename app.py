@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Importing necessary libraries
 import cv2
 import io
@@ -15,7 +16,7 @@ api = Api(app)
 metrics = PrometheusMetrics(app)
 
 # Métrica con información estatica, nos vale como healtcheck
-metrics.info("service", "Name and version of service", version="0.1.0", service="rotate-image")
+metrics.info("service", "Name and version of service", version="0.2.0", service="rotate-image")
 
 
 class Image(Resource):
@@ -27,7 +28,11 @@ class Image(Resource):
 
         if file and not utils.allowed_file(file.filename):
             return (
-                {"_error": f"Selected file is not valid, only {utils.ALLOWED_EXTENSIONS} is allowed"},
+                # {"_error": f"Selected file is not valid, only {utils.ALLOWED_EXTENSIONS} is allowed"},
+                {
+                    "_error": "Selected file is not valid, only %s is allowed"
+                    % {utils.listToString(utils.ALLOWED_EXTENSIONS)}
+                },
                 status.HTTP_400_BAD_REQUEST,
             )
 

@@ -1,7 +1,7 @@
-prometheus-flask-exporter
-flask_restful
-opencv-python
-flask_api
-Flask
 numpy
 scipy
+prometheus-flask-exporter
+Flask
+flask_restful
+flask_api
+opencv-python

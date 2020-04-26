@@ -38,8 +38,10 @@ curl --location --request POST 'http://0.0.0.0:8080/v1/ns/borja/image/rotate' \
 
 Para el desarrollo del proyecto se ha seguido la [siguiente guia](https://medium.com/analytics-vidhya/ocr-on-region-of-interest-roi-in-image-using-opencv-and-tesseract-a7cab6ff18b3)
 
+Para la creación del pipeline en github con publicación [docker](https://www.prestonlamb.com/blog/creating-a-docker-image-with-github-actions)
 ## Docker
 
-Para generar la imagen docker ejecutamos `docker build --rm -f "dockerfile" -t jichu20/rotate-image:latest "."`
 
-Para correr un contenedor docker de esta imagen `docker run -p 8080:8080 jichu20/rotate-image:latest`
+Para generar la imagen docker ejecutamos `docker build -f "dockerfile" -t jichu20/rotate-image:latest "."`
+
+Para correr un contenedor docker de esta imagen `docker run --rm -d -p 8080:8080 jichu20/rotate-image:latest`

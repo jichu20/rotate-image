@@ -1,23 +1,36 @@
 FROM frankwolf/rpi-python3-gpio
 
 # Exponemos el puerto 8080
-EXPOSE 8080 8080
+EXPOSE 8080
+
+RUN apt-get update \
+    && apt-get install python3-scipy \
+    && apt-get install libtiff5 \
+    && apt-get install libatlas-base-dev \
+    && apt-get install libjasper-dev \
+    && apt-get install libqtgui4 \
+    && apt-get install libilmbase-dev \
+    && apt-get install libopenexr-dev \
+    && apt-get install libgstreamer1.0-dev \
+    && apt-get install libqt4-test
 
 # Instalamos las dependencias de necesarias apra el ocr
-RUN apt-get update \
-    && apt-get install poppler-utils -y \
-    && apt-get clean \
-    && apt-get autoremove 
+# RUN pip install --upgrade pip
+# RUN pip install numpy
+# RUN pip install scipy
+# RUN pip install prometheus-flask-exporter
+# RUN pip install Flask
+# RUN pip install flask_restful
+# RUN pip install flask_api
+# RUN pip install opencv-python
 
-RUN pip install --upgrade pip
 
 # Copiamos el proyecto al contenedor
 # RUN make /app
 COPY . /app
 
 # Instalamos las dependencias
-# RUN pip install -r /app/requirements.txt
-RUN pip install --no-cache-dir -r /app/requirements.txt
+RUN pip3 install --no-cache-dir -r /app/requirements.txt
 
 # Ejecutamos la app
 CMD python3 /app/app.py
