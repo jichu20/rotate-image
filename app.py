@@ -5,9 +5,11 @@ import os
 import numpy as np
 from flask_restful import Api, Resource
 from flask_api import status
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, Response
 from core import utils, image
 from prometheus_flask_exporter import PrometheusMetrics
+import prometheus_client
+from prometheus_client import Summary, Counter, Histogram, Gauge
 
 app = Flask(__name__)
 api = Api(app)
@@ -16,6 +18,8 @@ metrics = PrometheusMetrics(app)
 
 # Métrica con información estatica, nos vale como healtcheck
 metrics.info("service", "Name and version of service", version="0.1.0", service="rotate-image")
+
+graphs = {}
 
 
 class Image(Resource):
