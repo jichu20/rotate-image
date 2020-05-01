@@ -44,4 +44,4 @@ Para la creación del pipeline en github con publicación [docker](https://www.p
 
 Para generar la imagen docker ejecutamos `docker build -f "dockerfile" -t jichu20/rotate-image:latest "."`
 
-Para correr un contenedor docker de esta imagen `docker run --rm -d -p 8080:8080 jichu20/rotate-image:latest`
+Para correr un contenedor docker de esta imagen `docker run --rm -d -p 8081:8080 jichu20/rotate-image:rpi_0.2.0`
