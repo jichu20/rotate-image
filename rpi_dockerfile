@@ -14,16 +14,6 @@ RUN apt-get update \
     && apt-get install libgstreamer1.0-dev \
     && apt-get install libqt4-test
 
-# Instalamos las dependencias de necesarias apra el ocr
-# RUN pip install --upgrade pip
-# RUN pip install numpy
-# RUN pip install scipy
-# RUN pip install prometheus-flask-exporter
-# RUN pip install Flask
-# RUN pip install flask_restful
-# RUN pip install flask_api
-# RUN pip install opencv-python
-
 
 # Copiamos el proyecto al contenedor
 # RUN make /app
