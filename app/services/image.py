@@ -5,8 +5,9 @@ import numpy as np
 from flask_restful import Resource
 from flask_api import status
 from flask import request, send_file
-from core import utils, image
-from commons.mime_types import CONTENT_TYPE_IMAGE_JPG
+
+from ..commons.mime_types import CONTENT_TYPE_IMAGE_JPG
+from ..core import utils, image
 
 
 class Image(Resource):
